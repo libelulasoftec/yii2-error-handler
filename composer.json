@@ -1,0 +1,27 @@
+{
+  "name": "taguz91/yii2-error-handler",
+  "description": "Error handler for mongo databases",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension"
+  ],
+  "license": "Apache-2.0",
+  "authors": [
+    {
+      "name": "Johnny Garcia",
+      "email": "johnnygar98@hotmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "yiisoft/yii2": "~2.0.41",
+    "mongodb/mongodb": "1.6.1",
+    "yiisoft/yii2-mongodb": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "taguz91\\ErrorHandler\\": "src"
+    }
+  }
+}
