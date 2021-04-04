@@ -25,7 +25,7 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Once the extension is installed, simply use it in your code by:
 
 ```php
 // confing\main.php
@@ -37,6 +37,10 @@ Once the extension is installed, simply use it in your code by  :
     'errorAction' => 'site/error',
     'empresa' => 'UNIQUE CODE',
     'saveError' => true,
+    // This exceptions not be save into database
+    'exceptionsNotSave' => [
+      \taguz91\ErrorHandler\exceptions\MessageException::class
+    ];
   ],
 ]
 ```
