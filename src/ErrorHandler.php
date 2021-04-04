@@ -2,6 +2,7 @@
 
 namespace taguz91\ErrorHandler;
 
+use taguz91\ErrorHandler\exceptions\MessageException;
 use taguz91\ErrorHandler\utils\Handler;
 use yii\web\ErrorHandler as WebErrorHandler;
 
@@ -16,6 +17,11 @@ class ErrorHandler extends WebErrorHandler
 
   /** @var string */
   public $empresa;
+
+  /** @var string[] Classname for exception to not save */
+  public $exceptionsNotSave = [
+    MessageException::class,
+  ];
 
   /** @var bool */
   public $saveError = false;
@@ -33,6 +39,11 @@ class ErrorHandler extends WebErrorHandler
    */
   protected function convertExceptionToArray($exception)
   {
-    return $this->handler->get($this->saveError);
+    $saveError = $this->saveError;
+    if (in_array(get_class($exception), $this->exceptionsNotSave)) {
+      $saveError = false;
+    }
+
+    return $this->handler->get($saveError);
   }
 }
