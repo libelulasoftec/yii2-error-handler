@@ -3,6 +3,8 @@
 namespace taguz91\ErrorHandler\utils;
 
 use Exception;
+use taguz91\ErrorHandler\exceptions\DataException;
+use taguz91\ErrorHandler\exceptions\MetadataException;
 use taguz91\ErrorHandler\models\Exceptions;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -37,6 +39,10 @@ class Handler
         $response = $this->unathorized();
         break;
 
+      case 1001:
+        $response = $this->message();
+        break;
+
       default:
         $response = $this->common();
         break;
@@ -65,11 +71,25 @@ class Handler
 
   private function common(): array
   {
-    return [
+    $error = [
       'transaccion' => false,
-      'errorDescripción' => $this->_code === 1
+      'errorDescripción' => $this->_code === 1001
         ? $this->_exception->getMessage()
         : Yii::t('app', 'A error ocurrend when process your request.'),
+    ];
+
+    if ($this->_exception instanceof DataException) {
+      $error = ArrayHelper::merge($error, $this->_exception->getDataError());
+    }
+
+    return $error;
+  }
+
+  private function message(): array
+  {
+    return [
+      'transaccion' => false,
+      'errorDescripción' => $this->_exception->getMessage(),
     ];
   }
 
@@ -86,6 +106,10 @@ class Handler
 
     if ($exception instanceof HttpException) {
       $meta['status'] = $exception->statusCode;
+    }
+
+    if ($this->_exception instanceof MetadataException) {
+      $meta = ArrayHelper::merge($meta, $this->_exception->getMetadataError());
     }
 
     return $meta;
