@@ -22,18 +22,23 @@ class Handler
   /** @var string */
   public $empresa;
 
-  public function __construct(Exception $exception, string $empresa)
+  public function __construct(string $empresa)
+  {
+    $this->empresa = $empresa;
+  }
+
+  private function init(Exception $exception)
   {
     $this->_exception = $exception;
     $this->_code = $exception->getCode();
-    $this->empresa = $empresa;
   }
 
   /**
    * Return de error to store into database
    */
-  public function get(bool $saveError): array
+  public function get(Exception $exception, bool $saveError): array
   {
+    $this->init($exception);
     switch ($this->_code) {
       case 401:
         $response = $this->unathorized();

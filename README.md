@@ -33,9 +33,9 @@ Once the extension is installed, simply use it in your code by:
 'components' => [
   ...,
   'errorHandler' => [
-    'taguz91\ErrorHandler\ErrorHandler',
     'errorAction' => 'site/error',
-    'empresa' => 'UNIQUE CODE',
+    'class' => \taguz91\ErrorHandler\ErrorHandler::class,
+    'empresa' => $_GET['empresa'] ?? 'undefined',
     'saveError' => true,
     // This exceptions not be save into database
     'exceptionsNotSave' => [
