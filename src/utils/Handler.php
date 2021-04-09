@@ -84,9 +84,8 @@ class Handler
   {
     $error = [
       'transaccion' => false,
-      'errorDescripción' => $this->_code === 1001
-        ? $this->_exception->getMessage()
-        : Yii::t('app', 'A error ocurrend when process your request.'),
+      'errorDescripción' => Yii::t('app', 'A error ocurrend when process your request.'),
+      'rawError' => $this->_exception->getMessage(),
     ];
 
     if ($this->_exception instanceof DataException) {
