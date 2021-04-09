@@ -63,6 +63,12 @@ class Handler
       );
     }
 
+    // Return with meta data error
+    if (YII_DEBUG) {
+      return ArrayHelper::merge($response, [
+        'meta' => $this->meta()
+      ]);
+    }
     return $response;
   }
 
