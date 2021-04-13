@@ -2,6 +2,7 @@
 
 namespace taguz91\ErrorHandler\utils;
 
+use Error;
 use Exception;
 use taguz91\ErrorHandler\exceptions\DataException;
 use taguz91\ErrorHandler\exceptions\MetadataException;
@@ -13,7 +14,7 @@ use yii\web\HttpException;
 class Handler
 {
 
-  /** @var Exception */
+  /** @var Exception|Error */
   private $_exception;
 
   /** @var integer */
@@ -27,16 +28,20 @@ class Handler
     $this->empresa = $empresa;
   }
 
-  private function init(Exception $exception)
+  /**
+   * @param Exception|Error
+   */
+  private function init($exception)
   {
     $this->_exception = $exception;
     $this->_code = $exception->getCode();
   }
 
   /**
+   * @param Exception|Error
    * Return de error to store into database
    */
-  public function get(Exception $exception, bool $saveError): array
+  public function get($exception, bool $saveError): array
   {
     $this->init($exception);
     switch ($this->_code) {
