@@ -40,7 +40,7 @@ Once the extension is installed, simply use it in your code by:
     // This exceptions not be save into database
     'exceptionsNotSave' => [
       \taguz91\ErrorHandler\exceptions\MessageException::class
-    ];
+    ],
   ],
 ]
 ```
