@@ -18,7 +18,7 @@
     "yiisoft/yii2": "~2.0.41",
     "mongodb/mongodb": "^1.8.0",
     "yiisoft/yii2-mongodb": "^2.0",
-    "taguz91/yii2-common-helpers": "v1.0.3.1"
+    "taguz91/yii2-common-helpers": "v2.0.0"
   },
   "repositories": [
     {
