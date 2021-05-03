@@ -2,6 +2,11 @@ Error handler
 =============
 Error handler for mongo database
 
+[![Latest Stable Version](https://poser.pugx.org/taguz91/yii2-error-handler/v)](//packagist.org/packages/taguz91/yii2-error-handler) 
+[![Total Downloads](https://poser.pugx.org/taguz91/yii2-error-handler/downloads)](//packagist.org/packages/taguz91/yii2-error-handler) 
+[![Latest Unstable Version](https://poser.pugx.org/taguz91/yii2-error-handler/v/unstable)](//packagist.org/packages/taguz91/yii2-error-handler) 
+[![License](https://poser.pugx.org/taguz91/yii2-error-handler/license)](//packagist.org/packages/taguz91/yii2-error-handler)
+
 Installation
 ------------
 
