@@ -89,7 +89,7 @@ class Handler
   {
     $error = [
       'transaccion' => false,
-      'errorDescripción' => Yii::t('app', 'A error ocurrend when process your request.'),
+      'errorDescripcion' => Yii::t('app', 'A error ocurrend when process your request.'),
       'rawError' => $this->_exception->getMessage(),
     ];
 
@@ -104,7 +104,7 @@ class Handler
   {
     return [
       'transaccion' => false,
-      'errorDescripción' => $this->_exception->getMessage(),
+      'errorDescripcion' => $this->_exception->getMessage(),
     ];
   }
 
