@@ -41,8 +41,11 @@ class Handler
    * @param Exception|Error
    * Return de error to store into database
    */
-  public function get($exception, bool $saveError): array
-  {
+  public function get(
+    $exception,
+    bool $saveError,
+    bool $showTrace = YII_DEBUG
+  ): array {
     $this->init($exception);
     switch ($this->_code) {
       case 401:
@@ -69,7 +72,7 @@ class Handler
     }
 
     // Return with meta data error
-    if (YII_DEBUG) {
+    if ($showTrace) {
       return ArrayHelper::merge($response, [
         'meta' => $this->meta()
       ]);

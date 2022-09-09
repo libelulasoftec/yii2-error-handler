@@ -27,6 +27,9 @@ class ErrorHandler extends WebErrorHandler
   /** @var bool */
   public $saveError = false;
 
+  /** @var bool */
+  public $showTrace = YII_DEBUG;
+
   public function init()
   {
     parent::init();
@@ -52,6 +55,10 @@ class ErrorHandler extends WebErrorHandler
       $saveError = false;
     }
 
-    return $this->handler->get($exception, $saveError);
+    return $this->handler->get(
+      $exception,
+      $saveError,
+      $this->showTrace
+    );
   }
 }

@@ -42,6 +42,7 @@ Once the extension is installed, simply use it in your code by:
     'class' => \taguz91\ErrorHandler\ErrorHandler::class,
     'empresa' => $_GET['empresa'] ?? 'undefined',
     'saveError' => true,
+    'showTrace' => YII_DEBUG,
     // This exceptions not be save into database
     'exceptionsNotSave' => [
       \taguz91\ErrorHandler\exceptions\MessageException::class
