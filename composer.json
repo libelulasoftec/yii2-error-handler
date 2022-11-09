@@ -28,7 +28,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "taguz91\\ErrorHandler\\": "src"
+      "Libelulasoft\\ErrorHandler\\": "src"
     }
   }
 }

@@ -2,11 +2,6 @@ Error handler
 =============
 Error handler for mongo database
 
-[![Latest Stable Version](https://poser.pugx.org/taguz91/yii2-error-handler/v)](//packagist.org/packages/taguz91/yii2-error-handler) 
-[![Total Downloads](https://poser.pugx.org/taguz91/yii2-error-handler/downloads)](//packagist.org/packages/taguz91/yii2-error-handler) 
-[![Latest Unstable Version](https://poser.pugx.org/taguz91/yii2-error-handler/v/unstable)](//packagist.org/packages/taguz91/yii2-error-handler) 
-[![License](https://poser.pugx.org/taguz91/yii2-error-handler/license)](//packagist.org/packages/taguz91/yii2-error-handler)
-
 Installation
 ------------
 
@@ -39,13 +34,13 @@ Once the extension is installed, simply use it in your code by:
   ...,
   'errorHandler' => [
     'errorAction' => 'site/error',
-    'class' => \taguz91\ErrorHandler\ErrorHandler::class,
+    'class' => \Libelulasoft\ErrorHandler\ErrorHandler::class,
     'empresa' => $_GET['empresa'] ?? 'undefined',
     'saveError' => true,
     'showTrace' => YII_DEBUG,
     // This exceptions not be save into database
     'exceptionsNotSave' => [
-      \taguz91\ErrorHandler\exceptions\MessageException::class
+      \Libelulasoft\ErrorHandler\exceptions\MessageException::class
     ],
   ],
 ]
