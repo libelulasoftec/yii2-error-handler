@@ -2,7 +2,7 @@
 
 namespace Libelulasoft\ErrorHandler\models;
 
-use taguz91\CommonHelpers\Utils;
+use Libelulasoft\CommonHelpers\Utils;
 use Yii;
 use yii\mongodb\ActiveRecord;
 

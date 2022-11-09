@@ -4,9 +4,9 @@ namespace Libelulasoft\ErrorHandler\utils;
 
 use Error;
 use Exception;
-use taguz91\ErrorHandler\exceptions\DataException;
-use taguz91\ErrorHandler\exceptions\MetadataException;
-use taguz91\ErrorHandler\models\Exceptions;
+use Libelulasoft\ErrorHandler\exceptions\DataException;
+use Libelulasoft\ErrorHandler\exceptions\MetadataException;
+use Libelulasoft\ErrorHandler\models\Exceptions;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\web\HttpException;

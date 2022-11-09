@@ -2,8 +2,8 @@
 
 namespace Libelulasoft\ErrorHandler;
 
-use taguz91\ErrorHandler\exceptions\MessageException;
-use taguz91\ErrorHandler\utils\Handler;
+use Libelulasoft\ErrorHandler\exceptions\MessageException;
+use Libelulasoft\ErrorHandler\utils\Handler;
 use Yii;
 use yii\web\ErrorHandler as WebErrorHandler;
 
@@ -13,7 +13,7 @@ use yii\web\ErrorHandler as WebErrorHandler;
 class ErrorHandler extends WebErrorHandler
 {
 
-  /** @var \taguz91\ErrorHandler\utils\Handler */
+  /** @var \Libelulasoft\ErrorHandler\utils\Handler */
   public $handler;
 
   /** @var string */

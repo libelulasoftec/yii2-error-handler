@@ -2,7 +2,7 @@
 
 namespace Libelulasoft\ErrorHandler\exceptions;
 
-use taguz91\CommonHelpers\RequestHelpers;
+use Libelulasoft\CommonHelpers\RequestHelpers;
 use yii\base\Model;
 use yii\web\HttpException;
 
