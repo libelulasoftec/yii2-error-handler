@@ -1,6 +1,6 @@
 <?php
 
-namespace taguz91\ErrorHandler\models;
+namespace Libelulasoft\ErrorHandler\models;
 
 use taguz91\CommonHelpers\Utils;
 use Yii;

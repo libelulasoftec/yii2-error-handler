@@ -1,6 +1,6 @@
 <?php
 
-namespace taguz91\ErrorHandler\exceptions;
+namespace Libelulasoft\ErrorHandler\exceptions;
 
 use taguz91\CommonHelpers\RequestHelpers;
 use yii\base\Model;

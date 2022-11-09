@@ -1,6 +1,6 @@
 <?php
 
-namespace taguz91\ErrorHandler\utils;
+namespace Libelulasoft\ErrorHandler\utils;
 
 use Error;
 use Exception;

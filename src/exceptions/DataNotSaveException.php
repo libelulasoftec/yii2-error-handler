@@ -1,6 +1,6 @@
 <?php
 
-namespace taguz91\ErrorHandler\exceptions;
+namespace Libelulasoft\ErrorHandler\exceptions;
 
 use yii\db\BaseActiveRecord;
 use yii\web\HttpException;

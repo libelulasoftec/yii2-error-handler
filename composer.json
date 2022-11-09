@@ -1,5 +1,5 @@
 {
-  "name": "taguz91/yii2-error-handler",
+  "name": "libelulasoft/yii2-error-handler",
   "description": "Error handler for mongo databases",
   "type": "yii2-extension",
   "keywords": [

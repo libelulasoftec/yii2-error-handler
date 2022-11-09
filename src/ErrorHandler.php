@@ -1,6 +1,6 @@
 <?php
 
-namespace taguz91\ErrorHandler;
+namespace Libelulasoft\ErrorHandler;
 
 use taguz91\ErrorHandler\exceptions\MessageException;
 use taguz91\ErrorHandler\utils\Handler;
