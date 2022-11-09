@@ -25,7 +25,7 @@ class DataInvalidException extends HttpException implements DataException, Metad
       'data' => RequestHelpers::getPostData(),
     ];
 
-    parent::__construct(500, $message, 1003, null);
+    parent::__construct(422, $message, 1003, null);
   }
 
   public function getDataError(): array

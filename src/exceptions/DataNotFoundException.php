@@ -16,7 +16,7 @@ class DataNotFoundException extends HttpException implements MetadataException
       'filter' => $filter,
     ];
 
-    parent::__construct(500, $message, 1004, null);
+    parent::__construct(404, $message, 1004, null);
   }
 
   public function getMetadataError(): array

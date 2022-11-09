@@ -18,7 +18,7 @@ class DataNotSaveException extends HttpException implements DataException
       'errorSummary' => $model->getErrorSummary(true),
     ];
 
-    parent::__construct(500, $message, 1002, null);
+    parent::__construct(422, $message, 1002, null);
   }
 
   public function getDataError(): array
