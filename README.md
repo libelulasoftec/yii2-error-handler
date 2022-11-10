@@ -43,10 +43,10 @@ composer require libelulasoft/yii2-error-handler
 4. Se debe cambiar el namespace `taguz91\ErrorHandler` a `Libelulasoft\ErrorHandler` en todo el proyecto.
 
 5. Actualizar las configuraciones de la libreria, agregando las nuevas opciones: 
-  1. **bdConnection** nombre de la base de datos que se usara para guardar todas las excepciones.
-  2. **saveError** booleano que nos indica si debemos guardar los errores en base de datos.
-  3. **showTrace** booleano que nos indica si debemos mostrar le trace en la response, por defecto utiliza la constante YII_DEBUG
-  4. **saveBody** booleano que nos indica si debemos guardar los datos enviados por *post* en la excepcion, por defecto se utiliza la constante YII_DEBUG
+  - **bdConnection** nombre de la base de datos que se usara para guardar todas las excepciones.
+  - **saveError** booleano que nos indica si debemos guardar los errores en base de datos.
+  - **showTrace** booleano que nos indica si debemos mostrar le trace en la response, por defecto utiliza la constante YII_DEBUG
+  - **saveBody** booleano que nos indica si debemos guardar los datos enviados por *post* en la excepcion, por defecto se utiliza la constante YII_DEBUG
 
 6. Probamos que todo funcione de forma correcta.
 

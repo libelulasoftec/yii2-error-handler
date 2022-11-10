@@ -27,7 +27,11 @@ class Exceptions extends ActiveRecord
     $errorHandler = Yii::$app->errorHandler;
 
     if ($errorHandler->bdConnection) {
-      return Yii::$app->get($errorHandler->bdConnection);
+      $bd = Yii::$app->get($errorHandler->bdConnection, false);
+
+      if ($bd !== null) {
+        return $bd;
+      }
     }
 
     return parent::getDb();
