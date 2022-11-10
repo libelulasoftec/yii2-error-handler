@@ -36,8 +36,10 @@ Once the extension is installed, simply use it in your code by:
     'errorAction' => 'site/error',
     'class' => \Libelulasoft\ErrorHandler\ErrorHandler::class,
     'empresa' => $_GET['empresa'] ?? 'undefined',
+    'bdConnection' => 'mongodb',
     'saveError' => true,
     'showTrace' => YII_DEBUG,
+    'saveBody' => YII_DEBUG,
     // This exceptions not be save into database
     'exceptionsNotSave' => [
       \Libelulasoft\ErrorHandler\exceptions\MessageException::class

@@ -3,11 +3,12 @@
 namespace Libelulasoft\ErrorHandler\models;
 
 use Libelulasoft\CommonHelpers\Utils;
+use Libelulasoft\ErrorHandler\ErrorHandler;
 use Yii;
 use yii\mongodb\ActiveRecord;
 
 /**
- * 
+ *
  * @property \MongoDB\BSON\UTCDateTime $createdAt
  * @property string $date
  * @property string $exception
@@ -19,6 +20,18 @@ use yii\mongodb\ActiveRecord;
  */
 class Exceptions extends ActiveRecord
 {
+
+  public static function getDb()
+  {
+    /** @var ErrorHandler */
+    $errorHandler = Yii::$app->errorHandler;
+
+    if ($errorHandler->bdConnection) {
+      return Yii::$app->get($errorHandler->bdConnection);
+    }
+
+    return parent::getDb();
+  }
 
   /**
    * @inheritdoc
@@ -59,7 +72,7 @@ class Exceptions extends ActiveRecord
   /**
    * @param (array|mixed)[] $response
    */
-  static function store(
+  public static function store(
     string $empCodigo,
     string $exception,
     array $response
@@ -71,16 +84,25 @@ class Exceptions extends ActiveRecord
     $exc->exception = $exception;
     $exc->response = $response;
 
-    // Save the request information 
+    // Save the request information
     $request = Yii::$app->request;
 
     $exc->currentUrl = $request->absoluteUrl;
-    $exc->user = [
+    $userData = [
       '_id' => Yii::$app->user->identity->_id ?? null,
       'ip' => $request->userIP,
       'host' => $request->userHost,
       'agent' => $request->userAgent,
     ];
+
+    /** @var ErrorHandler */
+    $errorHandler = Yii::$app->errorHandler;
+
+    if ($errorHandler->saveBody) {
+      $userData['body'] = $request->post();
+    }
+
+    $exc->user = $userData;
     $exc->method = $request->getMethod();
 
     $exc->save();

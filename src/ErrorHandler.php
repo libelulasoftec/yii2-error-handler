@@ -13,6 +13,9 @@ use yii\web\ErrorHandler as WebErrorHandler;
 class ErrorHandler extends WebErrorHandler
 {
 
+  /** @var string - Database connection name */
+  public $bdConnection = 'mongodb';
+
   /** @var \Libelulasoft\ErrorHandler\utils\Handler */
   public $handler;
 
@@ -29,6 +32,9 @@ class ErrorHandler extends WebErrorHandler
 
   /** @var bool */
   public $showTrace = YII_DEBUG;
+
+  /** @var bool */
+  public $saveBody = YII_DEBUG;
 
   public function init()
   {
