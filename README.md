@@ -40,7 +40,7 @@ composer remove taguz91/yii2-error-handler
 composer require libelulasoft/yii2-error-handler
 ```
 
-4. Se debe cambiar el namespace `taguz01\ErrorHandler` a `Libelulasoft\ErrorHandler` en todo el proyecto.
+4. Se debe cambiar el namespace `taguz91\ErrorHandler` a `Libelulasoft\ErrorHandler` en todo el proyecto.
 
 5. Actualizar las configuraciones de la libreria, agregando las nuevas opciones: 
   1. **bdConnection** nombre de la base de datos que se usara para guardar todas las excepciones.
