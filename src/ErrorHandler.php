@@ -3,18 +3,28 @@
 namespace Libelulasoft\ErrorHandler;
 
 use Libelulasoft\ErrorHandler\exceptions\MessageException;
+use Libelulasoft\ErrorHandler\interfaces\ConfigRecord;
 use Libelulasoft\ErrorHandler\utils\Handler;
 use Yii;
 use yii\web\ErrorHandler as WebErrorHandler;
 
 /**
- * 
+ *
  */
 class ErrorHandler extends WebErrorHandler
 {
 
   /** @var string - Database connection name */
   public $bdConnection = 'mongodb';
+
+  /** @var string */
+  public $loggerComponent = '';
+
+  /** @var string */
+  public $emailConfig = 'EMAIL_ERROR_NOTIFICATION';
+
+  /** @var string|null */
+  public $configClass = null;
 
   /** @var \Libelulasoft\ErrorHandler\utils\Handler */
   public $handler;
@@ -29,6 +39,9 @@ class ErrorHandler extends WebErrorHandler
 
   /** @var bool */
   public $saveError = false;
+
+  /** @var bool */
+  public $notificate = false;
 
   /** @var bool */
   public $showTrace = YII_DEBUG;
@@ -61,10 +74,29 @@ class ErrorHandler extends WebErrorHandler
       $saveError = false;
     }
 
-    return $this->handler->get(
+    $finalResponse = $this->handler->get(
       $exception,
       $saveError,
       $this->showTrace
     );
+
+    $this->notificate();
+    return $finalResponse;
+  }
+
+  private function notificate()
+  {
+    if (
+      $this->notificate
+      && class_exists($this->configClass)
+    ) {
+      $className = $this->configClass;
+      /** @var ConfigRecord */
+      $classConfig = new $className();
+
+      $this->handler->notificate(
+        $classConfig->getConfig($this->emailConfig)
+      );
+    }
   }
 }

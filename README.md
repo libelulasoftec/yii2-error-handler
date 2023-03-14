@@ -63,9 +63,13 @@ Once the extension is installed, simply use it in your code by:
   'errorHandler' => [
     'errorAction' => 'site/error',
     'class' => \Libelulasoft\ErrorHandler\ErrorHandler::class,
+    'loggerComponent' => '', // empty when the logger handler not exists
+    'emailConfig' => 'EMAIL_ERROR_NOTIFICATION', // configuration for email
+    'configClass' => '/common/models/Configuration', // debe implementar interface config
     'empresa' => $_GET['empresa'] ?? 'undefined',
     'bdConnection' => 'mongodb',
     'saveError' => true,
+    'notificate' => true,
     'showTrace' => YII_DEBUG,
     'saveBody' => YII_DEBUG,
     // This exceptions not be save into database

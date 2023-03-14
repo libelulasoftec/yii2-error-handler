@@ -6,6 +6,7 @@ use Error;
 use Exception;
 use Libelulasoft\ErrorHandler\exceptions\DataException;
 use Libelulasoft\ErrorHandler\exceptions\MetadataException;
+use Libelulasoft\ErrorHandler\interfaces\LoggerHandler;
 use Libelulasoft\ErrorHandler\models\Exceptions;
 use Yii;
 use yii\helpers\ArrayHelper;
@@ -17,6 +18,9 @@ class Handler
   /** @var Exception|Error */
   private $_exception;
 
+  /** @var Notification */
+  private $notification;
+
   /** @var integer */
   private $_code;
 
@@ -26,6 +30,7 @@ class Handler
   public function __construct(string $empresa)
   {
     $this->empresa = $empresa;
+    $this->notification = new Notification();
   }
 
   /**
@@ -62,12 +67,17 @@ class Handler
     }
 
     if ($saveError) {
-      Exceptions::store(
+      $record = Exceptions::store(
         $this->empresa,
         get_class($this->_exception),
         ArrayHelper::merge($response, [
           'meta' => $this->meta()
         ])
+      );
+
+      $this->notification->writeFile(
+        'exception_data.json',
+        $record->toArray()
       );
     }
 
@@ -78,6 +88,15 @@ class Handler
       ]);
     }
     return $response;
+  }
+
+  public function notificate(array $emailConfig)
+  {
+    $uidAction = Yii::$app->controller->getUniqueId();
+    $this->notification->send(
+      "ERROR | Servicio ({$uidAction})",
+      $emailConfig
+    );
   }
 
   private function unathorized()
@@ -116,10 +135,11 @@ class Handler
     $exception = $this->_exception;
     $meta = [
       'exception' => $exception->getMessage(),
-      'class' => get_class($exception),
-      'file' => $exception->getFile(),
-      'line' => $exception->getLine(),
-      'trace' => explode("\n", $exception->getTraceAsString())
+      'class'     => get_class($exception),
+      'file'      => $exception->getFile(),
+      'line'      => $exception->getLine(),
+      'trace'     => explode("\n", $exception->getTraceAsString()),
+      'logger'    => $this->loggerInfo(),
     ];
 
     if ($exception instanceof HttpException) {
@@ -131,5 +151,26 @@ class Handler
     }
 
     return $meta;
+  }
+
+  private function loggerInfo(): ?array
+  {
+    /** @var \Libelulasoft\ErrorHandler\ErrorHandler */
+    $errorHandler = Yii::$app->errorHandler;
+
+    if (empty($errorHandler->loggerComponent)) {
+      return null;
+    }
+
+    $logger = Yii::$app->get($errorHandler->loggerComponent, false);
+
+    if ($logger instanceof LoggerHandler) {
+      return [
+        'uid'     => $logger->getRequestUid(),
+        'startAt' => $logger->getRequestStartDateTime()->format('H:i:s Y-m-d'),
+      ];
+    }
+
+    return null;
   }
 }

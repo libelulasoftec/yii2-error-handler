@@ -80,7 +80,7 @@ class Exceptions extends ActiveRecord
     string $empCodigo,
     string $exception,
     array $response
-  ): void {
+  ): Exceptions {
     $exc = new Exceptions();
     $exc->empCodigo = $empCodigo;
     $exc->createdAt = Utils::getNowMongo();
@@ -110,5 +110,7 @@ class Exceptions extends ActiveRecord
     $exc->method = $request->getMethod();
 
     $exc->save();
+
+    return $exc;
   }
 }
