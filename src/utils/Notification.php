@@ -29,13 +29,17 @@ class Notification
     public function send(
         string $asunto,
         array $config
-    ) {
+    ): bool {
         $this->requestFile();
         $this->serverFile();
 
         $mail = new SendMail();
-        return $mail->sendMail($config, "Notificacion de errores", $asunto, $this->files);
-        // add class to send email
+        return $mail->sendMail(
+            $config,
+            "Ocurrio un error en la plataforma todos los detalles los encontrara en los archivos adjuntos.\n\n\n\nEste mensaje fue generado de forma automática",
+            $asunto,
+            $this->files
+        );
     }
 
 

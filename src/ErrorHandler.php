@@ -80,11 +80,13 @@ class ErrorHandler extends WebErrorHandler
       $this->showTrace
     );
 
-    $this->notificate();
+    $notificated = $this->notificate();
+    Yii::debug($notificated, __METHOD__);
+
     return $finalResponse;
   }
 
-  private function notificate()
+  private function notificate(): bool
   {
     if (
       $this->notificate
@@ -94,9 +96,17 @@ class ErrorHandler extends WebErrorHandler
       /** @var ConfigRecord */
       $classConfig = new $className();
 
-      $this->handler->notificate(
-        $classConfig->getConfig($this->emailConfig)
+      $config = $classConfig->getConfig(
+        $this->emailConfig
       );
+
+      if ($config) {
+        return $this->handler->notificate(
+          $config
+        );
+      }
     }
+
+    return false;
   }
 }
