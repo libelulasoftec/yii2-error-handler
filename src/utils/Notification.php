@@ -18,7 +18,7 @@ class Notification
             $filePath,
             json_encode($content, JSON_PRETTY_PRINT)
         )) {
-            $this->files[] = $filePath;
+            $this->files[$filename] = $filePath;
 
             return true;
         }
@@ -95,7 +95,7 @@ class Notification
         ];
 
         $this->writeFile(
-            'request_info.json',
+            'request_info.txt',
             $data
         );
     }
@@ -113,7 +113,7 @@ class Notification
         ];
 
         $this->writeFile(
-            'server_info.json',
+            'server_info.txt',
             $data
         );
     }

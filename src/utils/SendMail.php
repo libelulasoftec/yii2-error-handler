@@ -39,8 +39,8 @@ class SendMail
 
         $this->adjuntos = array_merge($this->adjuntos, $listaAdjuntos);
 
-        foreach ($this->adjuntos as $adjunto) {
-            $this->adjunto($adjunto);
+        foreach ($this->adjuntos as $name => $adjunto) {
+            $this->adjunto($name, $adjunto);
         }
 
         try {
@@ -61,21 +61,9 @@ class SendMail
         $this->adjuntos[] = $url;
     }
 
-    private function adjunto(string $url)
+    private function adjunto(string $name, string $url)
     {
-
         $body = file_get_contents($url);
-
-        $ext = explode('.', $url);
-        $ext = end($ext);
-        if (!isset($ext) || strlen($ext) != 3) {
-            $ext = 'pdf';
-        }
-
-        $partes = explode('/', $url);
-        $name = str_replace('.', '_', end($partes) ?? '')
-            . "_" . date('Ymdhis') . "." . $ext;
-
         $this->mail->attach($body, $name);
     }
 
@@ -84,12 +72,9 @@ class SendMail
         $user = urlencode($config['user']);
         $cont = urldecode($config['cont']);
 
-        $transport = Transport::fromDsn("smtp://{$user}:{$cont}@{$config['host']}:{$config['port']}");
+        $transport = Transport::fromDsn(
+            "smtp://{$user}:{$cont}@{$config['host']}:{$config['port']}"
+        );
         return new Mailer($transport);
-    }
-
-    public function __toString()
-    {
-        return "Envio notificacion por mail";
     }
 }

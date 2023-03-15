@@ -76,7 +76,7 @@ class Handler
       );
 
       $this->notification->writeFile(
-        'exception_data.json',
+        'exception_data.txt',
         $record->toArray()
       );
     }
