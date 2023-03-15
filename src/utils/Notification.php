@@ -33,6 +33,8 @@ class Notification
         $this->requestFile();
         $this->serverFile();
 
+        $mail = new SendMail();
+        return $mail->sendMail($config, "Notificacion de errores", $asunto, $this->files);
         // add class to send email
     }
 
