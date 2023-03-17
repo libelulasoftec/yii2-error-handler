@@ -72,6 +72,7 @@ class ErrorHandler extends WebErrorHandler
     $saveError = $this->saveError;
     if (in_array(get_class($exception), $this->exceptionsNotSave)) {
       $saveError = false;
+      $this->notificate = false;
     }
 
     $finalResponse = $this->handler->get(

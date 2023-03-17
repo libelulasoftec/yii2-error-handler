@@ -73,6 +73,7 @@ Once the extension is installed, simply use it in your code by:
     'showTrace' => YII_DEBUG,
     'saveBody' => YII_DEBUG,
     // This exceptions not be save into database
+    // And this exceptions not send via email
     'exceptionsNotSave' => [
       \Libelulasoft\ErrorHandler\exceptions\MessageException::class
     ],

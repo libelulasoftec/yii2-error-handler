@@ -92,7 +92,7 @@ class Handler
 
   public function notificate(array $emailConfig): bool
   {
-    $uidAction = Yii::$app->controller->getUniqueId();
+    $uidAction = Yii::$app->controller->action->getUniqueId();
     return $this->notification->send(
       "ERROR | Servicio ({$uidAction})",
       $emailConfig
